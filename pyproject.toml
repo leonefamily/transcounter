@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "transcounter"
+version = "0.0.1"
+authors = [
+    {name = "Ing. Dmitrii Grishchuk"},
+]
+description = "A package for traffic counting and exporting to SUMO"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "shapely>=2.0.0",
+    "numpy>=2.0.0",
+    "pygame>=2.0.0",
+    "pygame-widgets>=1.0.0",
+    "pandas>=2.0.0"
+]
+
+[project.scripts]
+counter = "transcounter.counter:main"
+extrapolator = "transcounter.extrapolator:main"
+converter = "transcounter.converter:main"
