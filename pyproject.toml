@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+requires = ["setuptools>=61.0.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "transcounter"
-version = "0.0.1"
+version = "0.0.2"
 authors = [
     {name = "Ing. Dmitrii Grishchuk"},
 ]

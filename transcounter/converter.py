@@ -109,17 +109,16 @@ def convert(
             'id': nr,
             'type': event['mode'],
             'depart': round(event['time'], 2),
+            'from': source_edge,
+            'to': sink_edge
         }
         veh_keys_vals = ' '.join(
             f'{k}="{v}"' for k, v in veh_dict.items()
         )
 
-        veh_def = (
-            f'\t<vehicle {veh_keys_vals}>\n'
-            f'\t\t<route edges="{source_edge} {sink_edge}"/>\n'
-            '\t</vehicle>\n'
-        )
+        veh_def = f'\t<trip {veh_keys_vals}/>\n'
         vehicles_definitions += veh_def
+
     routes_string = (
         '<?xml version="1.0" encoding="UTF-8"?>\n\n'
         f'<!-- generated on {dt.now()} by {__name__} {pver}-->\n\n'

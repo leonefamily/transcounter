@@ -3,9 +3,10 @@
 > A Python package for traffic counting and exporting data to SUMO (Simulation of Urban MObility).
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/)
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://opensource.org/licenses/GPL-3.0)
+[![Platform: Linux | macOS | Windows](https://img.shields.io/badge/platform-Linux%20|%20macOS%20|%20Windows-lightgrey.svg)](https://opensource.org/licenses/GPL-3.0)
+[![License: GPL v3](https://img.shields.io/badge/license-GPL%20v3-blue.svg)](https://opensource.org/licenses/GPL-3.0)
 
-**Author:** Ing. Dmitrii Grishchuk  
+**Author:** Ing. Dmitrii Grishchuk
 
 ---
 ## 📖 Overview
@@ -26,55 +27,56 @@ Before you begin, ensure you have the following installed on your machine:
     *   **Windows:** [Download Python](https://www.python.org/downloads/windows/)
     *   **macOS:** Usually pre-installed. Check with `python3 --version`. If missing, use [Homebrew](https://brew.sh/).
     *   **Linux:** Usually pre-installed. Check with `python3 --version`. If missing, use your distro's package manager (e.g., `sudo apt install python3`).
-2.  **Git**: Required to clone the repository.
+2.  **Git** - optional: Required to clone the repository via command line / terminal.
     *   **Windows:** [Download Git](https://git-scm.com/download/win)
-    *   **macOS/Linux:** `brew install git` or `sudo apt install git`.
+    *   **macOS:** `brew install git`
+    *   **Linux:** Usually pre-installed; if not, on Debian-based systems can be obtained via `apt` using `sudo apt install git`
 ---
 ## 🚀 Installation
 
 Use a **Virtual Environment (venv)** to keep dependencies isolated from your system Python.
 
 ### 1. Clone the Repository
+> The easiest way is to locate the `Code` button on the repository's GitHub page, click to see the drop-down menu and choose `Download ZIP`.
+> Unpack the archive after it's done downloading, and move inside the resulting folder.
 
-Open your terminal (Command Prompt, PowerShell, or Terminal) and run:
+If you wish to use **Git**, open your terminal (Command Prompt, PowerShell, or Terminal) and run:
 ```sh
 git clone https://github.com/leonefamily/transcounter.git
 cd transcounter
 ```
-### 2. Create a Virtual Environment
+### 2. Create a virtual environment and install the package
 
 Select the instructions below that match your operating system:
 
-#### 🪟 Windows
+### 🪟 Windows
+> The easiest way is to double-click the `install.bat` file, or launch it via the command prompt while being in the same directory
+
+or, the manual option is also available:
 ```powershell
-# Create the environment
 python -m venv venv
-
-# Activate the environment
 .\venv\Scripts\activate
-
-# Upgrade pip (optional but recommended)
-python -m pip install --upgrade pip
-```
-#### 🍎 macOS / 🐧 Linux
-```sh
-# Create the environment
-python3 -m venv venv
-# Activate the environment
-source venv/bin/activate
-# Upgrade pip (optional but recommended)
-pip install --upgrade pip
-```
-### 3. Install the Project
-
-Once the environment is active (you should see `(venv)` at the start of your terminal prompt), install the package in "editable" mode.
-This allows you to modify the code and see changes immediately without reinstalling.
-```sh
 pip install -e .
 ```
-> **Note:** The installation process will automatically download the required dependencies listed in `pyproject.toml` (e.g., `numpy`, `pandas`, `shapely`).
----
-## 🧪 Usage
+### 🍎 macOS / 🐧 Linux
+> The easiest way is to first allow launching the file `install.sh` in the context menu, and then double-click it. 
+> Alternatively, in the directory with the file, run
+> ```sh
+> chmod +x install.sh  # run this only once
+> source install.sh
+> ```
+or manually:
+```sh
+python3 -m venv venv
+source venv/bin/activate
+pip install -e .
+```
+
+Once the environment is active, you should see `(venv)` at the start of your terminal prompt on both macOS/Linux and Windows
+> **Note** This will not happen if you used batch or shell script by double-clicking them
+
+
+### 3. Usage
 
 Once installed, you can run the CLI tools directly from the terminal.
 
@@ -88,7 +90,9 @@ The `transcounter` package provides three main tools:
 
 ### counter
 
-Run command without arguments to enter graphical interface
+> Double-click `run_counter.bat` (on Windows) or `run_counter.sh` (on macOS and Linux; make sure it's allowed to launch)
+
+or run command without arguments to enter the graphical interface, while in `(venv)`
 ```sh
 counter
 ```
@@ -122,7 +126,10 @@ and the affected vehicle type maneuvers' count.
 Run the extrapolator to predict traffic flow using Poisson distribution based on the counted flows.
 Useful when the desired duration of the simulation is longer than the actual time span of counted events.
 
-Run without arguments to see the GUI:
+
+> Double-click `run_extrapolator.bat` (on Windows) or `run_extrapolator.sh` (on macOS and Linux; make sure it's allowed to launch)
+
+or run without arguments to see the GUI:
 ```sh
 extrapolator
 ```
@@ -148,12 +155,14 @@ If you'd like to use the command line interface eather than inputting values gra
 ```sh
 extrapolator --nogui --events-path="/path/to/events.csv" --output-path="/path/to/new_events.csv" --until=3600 --scale-factor=1 --seed=1
 ```
-
+The same will work when `extrapolator` is replaced with `.\run_extrapolator.bat` or `./run_extrapolator.sh` on appropriate systems.
 ### converter
 
 The script converts events data to SUMO .rou.xml format.
 
-Launch without arhuments to enter GUI:
+> Double-click `run_extrapolator.bat` (on Windows) or `run_extrapolator.sh` (on macOS and Linux; make sure it's allowed to launch)
+
+or launch without arguments to enter GUI:
 ```sh
 converter
 ```
@@ -169,6 +178,8 @@ Command line options to launch script from the terminal:
 ```sh
 converter --nogui --events-path="/path/to/events.csv" --output-routes-path="/path/to/save/events.rou.xml" --source1="E1" --sink1="-E1" --source2="E2" --sink2="-E2" --source3="E3" --sink3="-E3" --source4="E4" --sink4="-E4"
 ```
+The same will work when `converter` is replaced with `.\run_converter.bat` or `./run_converter.sh` on appropriate systems.
+
 ---
 ## 📂 Project Structure
 ```text
@@ -199,6 +210,13 @@ This project relies on the following Python libraries:
 *   `pygame-widgets` (>=1.0.0)
 
 ---
+## ⚠️ Known issues
+
+- On Windows 10 and 11 there is an error `Path to file ... does not exist` when providing paths to files that
+are to be created through the system dialog due to _Controlled Folder Access_ restrictions.
+The workaround is to paste the desired path directly into the corresponding field
+
+___
 ## 🤝 Contributing
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create.
