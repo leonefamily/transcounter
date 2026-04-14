@@ -5,7 +5,7 @@ import argparse
 import tkinter as tk
 from pathlib import Path
 from datetime import datetime as dt
-from typing import Optional, Dict, Union
+from typing import Optional, Dict, Union, List
 from tkinter import ttk, filedialog, messagebox
 
 from transcounter.utilities import APP_FOLDER, read_events, ErrorWindow
@@ -399,7 +399,9 @@ class InputApp:
         self.root.destroy()
 
 
-def parse_args() -> argparse.Namespace:
+def parse_args(
+        args_list: Optional[List[str]] = None
+) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="SUMO route converter; CLI configuration",
     )
@@ -428,12 +430,14 @@ def parse_args() -> argparse.Namespace:
             f'--sink{e_num}',
             help=f'Sink node for edge {e_num}'
         )
-    args = parser.parse_args()
+    args = parser.parse_args(sys.argv[1:] if args_list is None else args_list)
     return args
 
 
-def main():
-    args = parse_args()
+def main(
+        args_list: Optional[List[str]] = None
+):
+    args = parse_args(args_list)
     if not args.nogui:
         root = tk.Tk()
         app = InputApp(root=root)

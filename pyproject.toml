@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "transcounter"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
     {name = "Ing. Dmitrii Grishchuk"},
 ]
@@ -24,7 +24,18 @@ dependencies = [
     "pandas>=2.0.0"
 ]
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["transcounter"]
+
+[tool.setuptools.package-data]
+"mypkg" = ["images/**/*"]
+
+[tool.setuptools]
+include-package-data = true
+
 [project.scripts]
+transcounter = "transcounter.selector:gui"
 counter = "transcounter.counter:main"
 extrapolator = "transcounter.extrapolator:main"
 converter = "transcounter.converter:main"
