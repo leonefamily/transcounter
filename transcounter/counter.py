@@ -356,7 +356,7 @@ def main_gui(
 
     icons = {
         mode: pygame.transform.scale(
-            pygame.image.load(f'{IMAGES_DIR}/{mode}.png').convert_alpha(), (50, 50)
+            pygame.image.load(Path(IMAGES_DIR / f'{mode}.png').resolve()).convert_alpha(), (50, 50)
         )
         for mode in MODES
     }
@@ -542,7 +542,9 @@ def main_gui(
         clock.tick(60)
 
 
-def main():
+def main(
+        args_list: Optional[List[str]] = None  # unused here for now
+):
     last_used_path = initialize()
     last_used_path_parent = None if not last_used_path else last_used_path.parent
     events_path = create_file_gui(

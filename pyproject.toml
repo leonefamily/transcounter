@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "transcounter"
-version = "0.0.2"
+version = "0.0.3"
 authors = [
     {name = "Ing. Dmitrii Grishchuk"},
 ]
@@ -25,6 +25,7 @@ dependencies = [
 ]
 
 [project.scripts]
+transcounter = "transcounter.selector:gui"
 counter = "transcounter.counter:main"
 extrapolator = "transcounter.extrapolator:main"
 converter = "transcounter.converter:main"

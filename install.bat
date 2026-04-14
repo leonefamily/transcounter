@@ -12,7 +12,7 @@ IF EXIST ".venv" (
 ) ELSE IF EXIST "venv" (
     SET "VENV_DIR=venv"
 ) ELSE (
-    py -3 -m venv .venv || python -3 -m venv .venv
+    python -m venv .venv
     IF %ERRORLEVEL% NEQ 0 (
         ECHO Failed to create virtual environment
         EXIT /B 1

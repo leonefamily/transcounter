@@ -4,7 +4,7 @@ import sys
 
 import numpy as np
 from pathlib import Path
-from typing import Optional, Union, Dict, Any
+from typing import Optional, Union, Dict, Any, List
 
 import pandas as pd
 from transcounter.utilities import initialize, read_events, APP_FOLDER, ErrorWindow, write_events
@@ -417,7 +417,9 @@ def extrapolate_scale(
     write_events(events_df=s_events_df, output_path=output_path)
 
 
-def parse_args():
+def parse_args(
+        args_list: Optional[List[str]] = None
+) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Events extrapolator and scaler",
     )
@@ -456,7 +458,7 @@ def parse_args():
         default=0,
         help='Random seed for reproducibility. Must be an integer. 0 uses system time as seed'
     )
-    args = parser.parse_args()
+    args = parser.parse_args(sys.argv[1:] if args_list is None else args_list)
     if args.until <= 0:
         raise ValueError('--until must be greater than 0')
     if args.scale_factor <= 0:
@@ -464,8 +466,10 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
-    args = parse_args()
+def main(
+        args_list: Optional[List[str]] = None
+):
+    args = parse_args(args_list)
     if not args.nogui:
         root = tk.Tk()
         app = InputApp(root=root)

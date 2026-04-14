@@ -138,7 +138,7 @@ that will hold the results of this script by direct pasting or interactively cho
 with the system dialog accessible via `Browse...`.
 
 `Until` option dictates, what will be the last second
-of the new results. It cannot be less than the latest entry in the original events, be less than 0. Value of 0 will
+of the new results. It cannot be less than the latest entry in the original events, or less than 0. Value of 0 will
 disable extrapolation. The value is 3600 by default, which corresponds to 1 hour.
 
 `Scale by` is a scale factor, it will add extra vehicles (>1) or reduce their count less (<1).

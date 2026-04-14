@@ -5,9 +5,11 @@ import pandas as pd
 import tkinter as tk
 from tkinter import ttk
 
+from transcounter.__init__ import __name__ as pname
+
 APP_FOLDER = Path.home() / '.transclicker'
 LAST_USED_FILE_PATH = APP_FOLDER / 'last_used_file.txt'
-IMAGES_DIR = 'transcounter/images'
+IMAGES_DIR = Path(__file__).parent.resolve() / 'images'
 
 def initialize() -> Optional[Path]:
     APP_FOLDER.mkdir(parents=False, exist_ok=True)
