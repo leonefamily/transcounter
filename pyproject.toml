@@ -29,7 +29,7 @@ where = ["."]
 include = ["transcounter"]
 
 [tool.setuptools.package-data]
-"mypkg" = ["images/**/*"]
+"transcounter" = ["images/**/*"]
 
 [tool.setuptools]
 include-package-data = true
