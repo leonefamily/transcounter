@@ -87,6 +87,7 @@ The `transcounter` package provides three main tools:
 1.  **`counter`**: Helps to count traffic events on an intersection from video feed.
 2.  **`extrapolator`**: Extrapolates and/or scales traffic patterns.
 3.  **`converter`**: Converts data for SUMO export.
+4.  **`transcounter`**: Shows the GUI that supports picking a script.
 
 ### counter
 
@@ -183,19 +184,29 @@ The same will work when `converter` is replaced with `.\run_converter.bat` or `.
 ---
 ## 📂 Project Structure
 ```text
-transcounter/
 ├── transcounter/
-│   ├── images
+│   ├── images/
 │   │   ├── car.png
-│   │   ├── truck.png
-│   │   └── motorbike.png
+│   │   ├── motorbike.png
+│   │   └── truck.png
 │   ├── __init__.py
-│   ├── counter.py      # Traffic counting
-│   ├── extrapolator.py # Extrapolation and scaling logic
-│   └── converter.py    # SUMO export logic
-├── pyproject.toml          # Project configuration
-├── README.md               # This file
-└── LICENSE                 # License text
+│   ├── converter.py
+│   ├── counter.py
+│   ├── extrapolator.py
+│   ├── selector.py
+│   └── utilities.py
+├── .gitignore
+├── install.bat
+├── install.sh
+├── LICENSE
+├── pyproject.toml
+├── README.md
+├── run_converter.bat
+├── run_converter.sh
+├── run_counter.bat
+├── run_counter.sh
+├── run_extrapolator.bat
+└── run_extrapolator.sh
 ```
 
 ---
@@ -217,7 +228,7 @@ are to be created through the system dialog due to _Controlled Folder Access_ re
 The workaround is to paste the desired path directly into the corresponding field
 
 ___
-## 🤝 Contributing
+## 🤝 Development
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create.
 
@@ -226,10 +237,20 @@ Contributions are what make the open-source community such an amazing place to l
 3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
 4.  Push to the branch (`git push origin feature/AmazingFeature`).
 5.  Open a Pull Request.
+
+Binary artifacts of PyInstaller can be produced using this command from project's directory
+(with virtual environment that gets created after installation, pyinstaller must be installed additionally):
+```sh
+pyinstaller --onefile --windowed --name="transcounter" --hidden-import=transcounter.counter 
+--hidden-import=transcounter.extrapolator --hidden-import=transcounter.converter --add-data "transcounter/images:transcounter/images" 
+transcounter/selector.py
+```
+
 ---
 ## 📄 License
 
 This project is licensed under the GPL v3 License - see the [LICENSE](LICENSE) file for details.
+
 ---
 ## 📞 Contact
 
