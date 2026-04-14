@@ -241,9 +241,7 @@ Contributions are what make the open-source community such an amazing place to l
 Binary artifacts of PyInstaller can be produced using this command from project's directory
 (with virtual environment that gets created after installation, pyinstaller must be installed additionally):
 ```sh
-pyinstaller --onefile --windowed --name="transcounter" --hidden-import=transcounter.counter 
---hidden-import=transcounter.extrapolator --hidden-import=transcounter.converter --add-data "transcounter/images:transcounter/images" 
-transcounter/selector.py
+pyinstaller --onefile --windowed --name="transcounter" --hidden-import=transcounter.counter --hidden-import=transcounter.extrapolator --hidden-import=transcounter.converter --add-data "transcounter/images:transcounter/images" transcounter/selector.py
 ```
 
 ---
